@@ -2,7 +2,7 @@ import TarjetaDestacado from "./TarjetaDestacado";
 
 const CANTIDAD_POR_FILA = 6;
 
-export default function FilaCategoria({ titulo, productos }) {
+export default function FilaCategoria({ titulo, productos, onVerMercado }) {
   // Si la categoría no tiene productos, no se muestra la fila
   if (productos.length === 0) {
     return null;
@@ -12,6 +12,13 @@ export default function FilaCategoria({ titulo, productos }) {
     <section className="fila-categoria">
       <div className="fila-titulo">
         <h3>{titulo}</h3>
+        <button
+          type="button"
+          className="enlace-mercado"
+          onClick={onVerMercado}
+        >
+          Ver en el Mercado
+        </button>
       </div>
 
       <div className="carrusel">

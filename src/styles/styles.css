@@ -1,3 +1,9 @@
+/* =========================================
+   ESTILOS GENERALES
+   Variables, navbar, footer y piezas usadas en varias páginas.
+   Cada página importa además su propio archivo.
+   ========================================= */
+
 :root {
     --bg-dark: #0e1724;
     --color-acento: #9c0e20;
@@ -104,6 +110,8 @@ body {
         padding-bottom: 0;
     }
 
+    /* El buscador ocupa el espacio libre entre el logo y el menú,
+       así no se monta sobre los botones cuando hay sesión iniciada */
     .search-section {
         flex: 1;
         max-width: 722px;
@@ -111,11 +119,89 @@ body {
     }
 }
 
+/* =========================================
+   ENCABEZADO DE PÁGINA (Mercado y Publicar)
+   ========================================= */
+
+.encabezado-pagina {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    padding: 48px 24px;
+    border-bottom: 5px solid var(--color-acento);
+}
+
+.encabezado-pagina h1 {
+    margin: 0 0 8px 0;
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.encabezado-pagina p {
+    margin: 0;
+    color: #cdd2d9;
+    font-size: 1rem;
+}
+
+@media (max-width: 991px) {
+    .encabezado-pagina {
+        padding: 36px 20px;
+    }
+
+    .encabezado-pagina h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .encabezado-pagina {
+        padding: 32px 16px;
+    }
+
+    .encabezado-pagina h1 {
+        font-size: 1.8rem;
+    }
+}
+
+/* =========================================
+   PIEZAS COMPARTIDAS
+   ========================================= */
+
+/* Imagen faltante (ImagenProducto) */
 .imagen-no-disponible {
     color: #69717c;
     font-size: 0.9rem;
 }
 
+/* Mensaje sin productos (MensajeVacio) */
+.mensaje-sin-productos {
+    padding: 50px 20px;
+    text-align: center;
+    background-color: #f4f5f7;
+    border-radius: 12px;
+}
+
+.mensaje-sin-productos h3 {
+    color: var(--bg-dark);
+    font-size: 1.3rem;
+}
+
+.mensaje-sin-productos p {
+    color: #69717c;
+    margin: 0;
+}
+
+/* Estado del producto (badge) */
+.estado-disponible {
+    background-color: #1f7a4d;
+    color: var(--text-white);
+}
+
+.estado-vendido {
+    background-color: #6b7280;
+    color: var(--text-white);
+}
+
+/* Menú móvil abierto desde React */
 #menuPrincipal.menu-abierto {
     display: block;
 }

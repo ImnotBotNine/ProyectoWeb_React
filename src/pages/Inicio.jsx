@@ -14,9 +14,10 @@ const FILAS = [
   { id: "otros", titulo: "Otros productos" }
 ];
 
-export default function Inicio({ productos, cargando, error, onRecargar }) {
+export default function Inicio({ productos, cargando, error, onRecargar, onVerMercado }) {
   function productosDeFila(idFila) {
     if (idFila === "nuevos") {
+      // Los últimos publicados primero (el id más alto es el más nuevo)
       return [...productos].sort((a, b) => b.id - a.id);
     }
 
@@ -39,6 +40,7 @@ export default function Inicio({ productos, cargando, error, onRecargar }) {
             key={fila.id}
             titulo={fila.titulo}
             productos={productosDeFila(fila.id)}
+            onVerMercado={() => onVerMercado(fila.id === "nuevos" ? "todas" : fila.id)}
           />
         ))}
       </section>
