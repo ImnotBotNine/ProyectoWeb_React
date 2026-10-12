@@ -111,6 +111,11 @@ body {
     }
 }
 
+.imagen-no-disponible {
+    color: #69717c;
+    font-size: 0.9rem;
+}
+
 #menuPrincipal.menu-abierto {
     display: block;
 }
