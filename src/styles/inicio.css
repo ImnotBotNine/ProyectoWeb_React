@@ -1,3 +1,8 @@
+/* =========================================
+   PÁGINA INICIO
+   Portada y filas de destacados.
+   ========================================= */
+
 .hero-image {
     position: relative;
     width: 100%;
@@ -60,6 +65,19 @@
     font-size: 1.15rem;
     color: var(--bg-dark);
     margin: 0;
+}
+
+.enlace-mercado {
+    border: none;
+    background: transparent;
+    padding: 0;
+    color: var(--color-acento);
+    text-decoration: none;
+    font-size: 0.95rem;
+}
+
+.enlace-mercado:hover {
+    text-decoration: underline;
 }
 
 .carrusel {
