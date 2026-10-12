@@ -1,0 +1,116 @@
+:root {
+    --bg-dark: #0e1724;
+    --color-acento: #9c0e20;
+    --text-white: #ffffff;
+    --gris-tarjeta: #434b56;
+    --gris-imagen: #e3e6eb;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--text-white);
+}
+
+.header-custom {
+    background-color: var(--bg-dark);
+    min-height: 76px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 5px solid var(--color-acento);
+}
+
+.brand-section {
+    display: flex;
+    align-items: center;
+}
+
+.brand-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    margin-right: 8px;
+}
+
+.brand-text {
+    font-size: 1.5rem;
+    color: var(--text-white);
+}
+
+.search-section {
+    width: 100%;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--text-white);
+    height: 48px;
+    border-radius: 50px;
+    padding-left: 12px;
+}
+
+.search-icon {
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+.search-input {
+    flex-grow: 1;
+    height: 100%;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    color: var(--bg-dark);
+    padding-right: 16px;
+}
+
+.site-footer {
+    background-color: var(--bg-dark);
+    border-top: 5px solid var(--color-acento);
+    padding: 24px;
+    text-align: center;
+    color: var(--text-white);
+}
+
+.site-footer p {
+    margin: 0;
+}
+
+@media (min-width: 992px) {
+    #menuPrincipal {
+        flex-grow: 1;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .navbar-nav {
+        align-items: center;
+    }
+
+    .navbar-nav .nav-item {
+        display: flex;
+        align-items: center;
+        line-height: 1;
+    }
+
+    .navbar-nav .nav-link {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    .search-section {
+        flex: 1;
+        max-width: 722px;
+        margin: 0 24px;
+    }
+}
+
+#menuPrincipal.menu-abierto {
+    display: block;
+}
