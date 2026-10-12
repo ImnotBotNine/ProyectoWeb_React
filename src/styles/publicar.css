@@ -1,0 +1,191 @@
+
+
+
+.publicar-contenido {
+    padding: 48px 24px;
+}
+
+.panel-formulario {
+    background-color: #f4f5f7;
+    border: 1px solid #dfe2e6;
+    border-radius: 12px;
+    padding: 32px;
+}
+
+.panel-formulario .form-label {
+    color: var(--bg-dark);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.panel-formulario .form-control,
+.panel-formulario .form-select {
+    border-radius: 8px;
+    min-height: 42px;
+}
+
+.panel-formulario .form-control:focus,
+.panel-formulario .form-select:focus {
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 0.2rem rgba(156, 14, 32, 0.15);
+}
+
+.panel-formulario .invalid-feedback {
+    display: block;
+    min-height: 20px;
+    margin-top: 4px;
+}
+
+.ayuda-campo {
+    margin-top: 4px;
+    color: #69717c;
+    font-size: 0.8rem;
+}
+
+.formulario-acciones {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.btn-publicar {
+    border: none;
+    border-radius: 7px;
+    padding: 11px 26px;
+    background-color: var(--color-acento);
+    color: var(--text-white);
+    font-weight: bold;
+}
+
+.btn-publicar:hover {
+    background-color: #7f0b1a;
+}
+
+.btn-limpiar-form {
+    border: 1px solid #cdd2d9;
+    border-radius: 7px;
+    padding: 11px 20px;
+    background-color: transparent;
+    color: var(--bg-dark);
+}
+
+.btn-limpiar-form:hover {
+    background-color: #e3e6eb;
+}
+
+@media (max-width: 576px) {
+    .publicar-contenido {
+        padding: 32px 16px;
+    }
+
+    .panel-formulario {
+        padding: 20px;
+    }
+
+    .formulario-acciones {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.panel-publicados {
+    margin-top: 32px;
+}
+
+.panel-publicados h2 {
+    color: var(--bg-dark);
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.publicados-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.btn-borrar-publicaciones {
+    border: none;
+    background: transparent;
+    color: var(--color-acento);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+.btn-borrar-publicaciones:hover {
+    text-decoration: underline;
+}
+
+.publicado {
+    display: block;
+    background-color: var(--gris-tarjeta);
+    color: var(--text-white);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 12px;
+}
+
+.publicado-categoria {
+    color: #cdd2d9;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.publicado-nombre {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 6px 0 8px 0;
+}
+
+.publicado-texto {
+    color: #cdd2d9;
+    font-size: 0.9rem;
+    margin: 0 0 14px 0;
+}
+
+.publicado-pie {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+.publicado-precio {
+    font-size: 1.15rem;
+    font-weight: bold;
+}
+
+.publicado-usuario {
+    color: #cdd2d9;
+    font-size: 0.85rem;
+}
+
+.vista-previa {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 12px;
+}
+
+.vista-previa img {
+    width: 110px;
+    height: 82px;
+    object-fit: cover;
+    border-radius: 8px;
+    background-color: var(--gris-imagen);
+}
+
+.btn-quitar-imagen {
+    border: 1px solid #cdd2d9;
+    border-radius: 7px;
+    padding: 7px 14px;
+    background-color: transparent;
+    color: var(--bg-dark);
+    font-size: 0.9rem;
+}
+
+.btn-quitar-imagen:hover {
+    background-color: #e3e6eb;
+}

@@ -2,6 +2,7 @@ import { useState } from "react";
 
 const PAGINAS = [
   { id: "inicio", titulo: "Inicio" },
+  { id: "publicar", titulo: "Publicar" },
   { id: "mercado", titulo: "Mercado" }
 ];
 
@@ -45,7 +46,8 @@ export default function Header({
             className={`collapse navbar-collapse ${menuAbierto ? "menu-abierto" : ""}`}
             id="menuPrincipal"
           >
-            <div className="search-section">
+            {paginaActual !== "publicar" && (
+              <div className="search-section">
                 <div className="search-container">
                   <span className="search-icon">
                     <svg viewBox="0 0 24 24" width="20" height="20" fill="#0e1724">
@@ -62,6 +64,7 @@ export default function Header({
                   />
                 </div>
               </div>
+            )}
 
             <ul className="navbar-nav ms-auto">
               {PAGINAS.map((pagina) => (

@@ -4,12 +4,14 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Inicio from "./pages/Inicio";
 import Mercado from "./pages/Mercado";
+import Publicar from "./pages/Publicar";
 import { guardarDato, leerDato } from "./js/almacenamiento";
 
 const URL_API = "http://127.0.0.1:8000/productos";
 
-// Clave de localStorage: los favoritos no se pierden al recargar
+// Claves de localStorage: estos datos no se pierden al recargar
 const CLAVE_FAVORITOS = "infraganti-favoritos";
+const CLAVE_PUBLICADOS = "infraganti-publicados";
 
 export default function App() {
   const [productos, setProductos] = useState([]);
@@ -20,6 +22,7 @@ export default function App() {
   const [busqueda, setBusqueda] = useState("");
   const [categoriaInicial, setCategoriaInicial] = useState("todas");
   const [favoritos, setFavoritos] = useState(leerDato(CLAVE_FAVORITOS, []));
+  const [idsPublicados, setIdsPublicados] = useState(leerDato(CLAVE_PUBLICADOS, []));
 
   /* =========================================
      GUARDAR EN EL ESTADO Y EN LOCALSTORAGE
@@ -27,6 +30,11 @@ export default function App() {
   function guardarFavoritos(nuevosFavoritos) {
     setFavoritos(nuevosFavoritos);
     guardarDato(CLAVE_FAVORITOS, nuevosFavoritos);
+  }
+
+  function guardarPublicados(nuevosIds) {
+    setIdsPublicados(nuevosIds);
+    guardarDato(CLAVE_PUBLICADOS, nuevosIds);
   }
 
   /* =========================================
@@ -56,6 +64,31 @@ export default function App() {
   useEffect(() => {
     cargarProductos();
   }, []);
+
+  async function publicarProducto(nuevoProducto) {
+    try {
+      const respuesta = await fetch(URL_API, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(nuevoProducto)
+      });
+
+      if (!respuesta.ok) {
+        throw new Error("No fue posible publicar el producto.");
+      }
+
+      const productoCreado = await respuesta.json();
+
+      setProductos([...productos, productoCreado]);
+      guardarPublicados([...idsPublicados, productoCreado.id]);
+      return true;
+    } catch (error) {
+      console.log(error);
+      return false;
+    }
+  }
 
   async function cambiarEstado(producto) {
     const nuevoEstado = producto.estado === "vendido" ? "disponible" : "vendido";
@@ -105,8 +138,26 @@ export default function App() {
 
       setProductos(productos.filter((producto) => producto.id !== id));
       guardarFavoritos(favoritos.filter((idFavorito) => idFavorito !== id));
+      guardarPublicados(idsPublicados.filter((idPublicado) => idPublicado !== id));
     } catch (error) {
       setError(error.message);
+    }
+  }
+
+  async function borrarPublicados() {
+    try {
+      setError("");
+
+      for (const id of idsPublicados) {
+        await eliminarEnApi(id);
+      }
+
+      setProductos(productos.filter((producto) => !idsPublicados.includes(producto.id)));
+      guardarFavoritos(favoritos.filter((idFavorito) => !idsPublicados.includes(idFavorito)));
+      guardarPublicados([]);
+    } catch (error) {
+      setError(error.message);
+      cargarProductos();
     }
   }
 
@@ -172,6 +223,16 @@ export default function App() {
             onFavorito={alternarFavorito}
             onCambiarEstado={cambiarEstado}
             onEliminar={eliminarProducto}
+          />
+        )}
+
+        {pagina === "publicar" && (
+          <Publicar
+            productos={productos}
+            idsPublicados={idsPublicados}
+            onPublicar={publicarProducto}
+            onBorrarPublicados={borrarPublicados}
+            onIrMercado={() => navegar("mercado")}
           />
         )}
       </main>

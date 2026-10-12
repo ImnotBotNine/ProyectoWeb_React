@@ -1,9 +1,3 @@
-/* =========================================
-   ESTILOS GENERALES
-   Variables, navbar, footer y piezas usadas en varias páginas.
-   Cada página importa además su propio archivo.
-   ========================================= */
-
 :root {
     --bg-dark: #0e1724;
     --color-acento: #9c0e20;
@@ -204,4 +198,17 @@ body {
 /* Menú móvil abierto desde React */
 #menuPrincipal.menu-abierto {
     display: block;
+}
+
+/* Botón con aspecto de enlace */
+.btn-enlace {
+    border: none;
+    background: transparent;
+    padding: 0;
+    color: var(--color-acento);
+    font-weight: bold;
+}
+
+.btn-enlace:hover {
+    text-decoration: underline;
 }
