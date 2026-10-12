@@ -1,16 +1,8 @@
-/* =========================================
-   PÁGINA MERCADO
-   Filtros y tarjetas de producto.
-   ========================================= */
-
-
-/* Contenido */
 .mercado-contenido {
     padding: 48px 24px;
     background-color: var(--text-white);
 }
 
-/* Filtros */
 .panel-filtros {
     background-color: #f4f5f7;
     border-radius: 12px;
@@ -70,7 +62,6 @@
     box-shadow: 0 0 0 0.2rem rgba(156, 14, 32, 0.15);
 }
 
-/* Encabezado productos */
 .productos-header {
     display: flex;
     justify-content: space-between;
@@ -90,9 +81,6 @@
     color: #69717c;
 }
 
-/* =========================================
-   TARJETAS
-   ========================================= */
 .producto-card {
     height: 100%;
     background-color: var(--gris-tarjeta);
@@ -108,7 +96,6 @@
     box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
 }
 
-/* Imagen */
 .producto-imagen {
     height: 200px;
     background-color: var(--gris-imagen);
@@ -124,7 +111,6 @@
     object-fit: cover;
 }
 
-/* Contenido */
 .producto-contenido {
     padding: 18px;
 }
@@ -168,9 +154,6 @@
     font-size: 0.8rem;
 }
 
-/* =========================================
-   BOTONES
-   ========================================= */
 .producto-acciones {
     display: flex;
     gap: 8px;
@@ -209,9 +192,6 @@
     border-color: var(--color-acento);
 }
 
-/* =========================================
-   ESTADO DEL PRODUCTO
-   ========================================= */
 .producto-encabezado {
     display: flex;
     justify-content: space-between;
@@ -254,11 +234,6 @@
     background-color: var(--color-acento);
     border-color: var(--color-acento);
 }
-
-/* =========================================
-   RESPONSIVE
-   ========================================= */
-
 
 @media (max-width: 991px) {
     .panel-filtros {

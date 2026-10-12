@@ -10,8 +10,8 @@ const PRECIO_MAXIMO = 10000000;
 const LARGO_MINIMO_DESCRIPCION = 20;
 const PESO_MAXIMO_IMAGEN = 5000000;
 const ANCHO_MAXIMO_IMAGEN = 800;
+const SEGUNDOS_ESPERA = 30;
 
-// Reglas de cada campo (las mismas que exige la API)
 const REGLAS = [
   { campo: "nombre", nombre: "el nombre del producto", minimo: 5, maximo: 80 },
   { campo: "categoria", nombre: "una categoría", tipo: "seleccion" },
@@ -31,11 +31,6 @@ const DATOS_VACIOS = {
   carrera: "",
   contacto: ""
 };
-
-/* =========================================
-   VALIDACIONES
-   Devuelven el mensaje de error, o "" si el valor es correcto.
-   ========================================= */
 
 function validarTexto(regla, valor) {
   const texto = valor.trim();
@@ -83,6 +78,8 @@ function validarCampo(campo, valor) {
 export default function Publicar({
   productos,
   idsPublicados,
+  esAdmin,
+  ultimaPublicacion,
   onPublicar,
   onBorrarPublicados,
   onIrMercado
@@ -91,10 +88,6 @@ export default function Publicar({
   const [errores, setErrores] = useState({});
   const [imagen, setImagen] = useState("");
   const [mensaje, setMensaje] = useState({ tipo: "", texto: "" });
-
-  /* =========================================
-     CAMPOS
-     ========================================= */
 
   function cambiarCampo(campo, valor) {
     const nuevosDatos = { ...datos };
@@ -136,13 +129,8 @@ export default function Publicar({
     setMensaje({ tipo: "", texto: "" });
   }
 
-  /* =========================================
-     IMAGEN
-     ========================================= */
-
   function quitarImagen() {
     setImagen("");
-    // Vacía el campo de archivo, como en publicar.js de ProyectoDWeb
     document.getElementById("imagen").value = "";
   }
 
@@ -201,16 +189,22 @@ export default function Publicar({
     cambiarError("imagen", "");
   }
 
-  /* =========================================
-     PUBLICAR
-     ========================================= */
-
   async function publicarProducto(event) {
     event.preventDefault();
 
     if (!validarFormulario()) {
       setMensaje({ tipo: "error", texto: "Revisa los campos marcados en rojo." });
       return;
+    }
+
+    if (!esAdmin) {
+      const segundosPasados = (Date.now() - ultimaPublicacion) / 1000;
+
+      if (segundosPasados < SEGUNDOS_ESPERA) {
+        const faltan = Math.round(SEGUNDOS_ESPERA - segundosPasados);
+        setMensaje({ tipo: "error", texto: "Espera " + faltan + " segundos antes de volver a publicar." });
+        return;
+      }
     }
 
     const nuevoProducto = {
@@ -394,13 +388,15 @@ export default function Publicar({
                 <section className="panel-publicados">
                   <div className="publicados-header">
                     <h2>Tus publicaciones</h2>
-                    <button
-                      type="button"
-                      className="btn-borrar-publicaciones"
-                      onClick={borrarPublicaciones}
-                    >
-                      Borrar todas
-                    </button>
+                    {esAdmin && (
+                      <button
+                        type="button"
+                        className="btn-borrar-publicaciones"
+                        onClick={borrarPublicaciones}
+                      >
+                        Borrar todas
+                      </button>
+                    )}
                   </div>
 
                   {publicados.map((producto) => (

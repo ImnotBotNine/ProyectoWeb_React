@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const PAGINAS = [
   { id: "inicio", titulo: "Inicio" },
-  { id: "publicar", titulo: "Publicar" },
+  { id: "publicar", titulo: "Publicar", privada: true },
   { id: "mercado", titulo: "Mercado" }
 ];
 
@@ -10,7 +10,11 @@ export default function Header({
   paginaActual,
   onNavegar,
   busqueda,
-  onBuscar
+  onBuscar,
+  totalCarrito,
+  onAbrirCarrito,
+  usuario,
+  onCerrarSesion
 }) {
   const [menuAbierto, setMenuAbierto] = useState(false);
 
@@ -19,11 +23,19 @@ export default function Header({
     onNavegar(idPagina);
   }
 
+  function cerrarSesion() {
+    setMenuAbierto(false);
+    onCerrarSesion();
+  }
+
+  const paginasVisibles = PAGINAS.filter(
+    (pagina) => !pagina.privada || usuario !== null
+  );
+
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-dark header-custom">
         <div className="container-fluid">
-          {/* Enlaces con href="#", como el menú de ProyectoDWeb: vuelven al inicio de la página */}
           <a href="#" className="navbar-brand brand-section" onClick={() => navegar("inicio")}>
             <img
               src="/assets/images/icon.png"
@@ -67,7 +79,19 @@ export default function Header({
             )}
 
             <ul className="navbar-nav ms-auto">
-              {PAGINAS.map((pagina) => (
+              {usuario !== null && (paginaActual === "mercado" || paginaActual === "producto") && (
+                <li className="nav-item">
+                  <button
+                    type="button"
+                    className="nav-link btn btn-link carrito-nav"
+                    onClick={onAbrirCarrito}
+                  >
+                    🛒 Carrito ({totalCarrito})
+                  </button>
+                </li>
+              )}
+
+              {paginasVisibles.map((pagina) => (
                 <li className="nav-item" key={pagina.id}>
                   <a
                     href="#"
@@ -78,6 +102,24 @@ export default function Header({
                   </a>
                 </li>
               ))}
+
+              {usuario === null ? (
+                <li className="nav-item">
+                  <a
+                    href="#"
+                    className={`nav-link ${paginaActual === "login" ? "active" : ""}`}
+                    onClick={() => navegar("login")}
+                  >
+                    Iniciar sesión
+                  </a>
+                </li>
+              ) : (
+                <li className="nav-item">
+                  <a href="#" className="nav-link" onClick={cerrarSesion}>
+                    Cerrar sesión
+                  </a>
+                </li>
+              )}
             </ul>
           </div>
         </div>

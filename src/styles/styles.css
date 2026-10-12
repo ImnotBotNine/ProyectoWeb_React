@@ -104,18 +104,12 @@ body {
         padding-bottom: 0;
     }
 
-    /* El buscador ocupa el espacio libre entre el logo y el menú,
-       así no se monta sobre los botones cuando hay sesión iniciada */
     .search-section {
         flex: 1;
         max-width: 722px;
         margin: 0 24px;
     }
 }
-
-/* =========================================
-   ENCABEZADO DE PÁGINA (Mercado y Publicar)
-   ========================================= */
 
 .encabezado-pagina {
     background-color: var(--bg-dark);
@@ -156,17 +150,12 @@ body {
     }
 }
 
-/* =========================================
-   PIEZAS COMPARTIDAS
-   ========================================= */
-
-/* Imagen faltante (ImagenProducto) */
 .imagen-no-disponible {
     color: #69717c;
     font-size: 0.9rem;
 }
 
-/* Mensaje sin productos (MensajeVacio) */
+
 .mensaje-sin-productos {
     padding: 50px 20px;
     text-align: center;
@@ -184,7 +173,6 @@ body {
     margin: 0;
 }
 
-/* Estado del producto (badge) */
 .estado-disponible {
     background-color: #1f7a4d;
     color: var(--text-white);
@@ -195,12 +183,67 @@ body {
     color: var(--text-white);
 }
 
-/* Menú móvil abierto desde React */
+.modal-producto {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-producto .modal-header {
+    background-color: var(--bg-dark);
+    color: var(--text-white);
+    border-bottom: 5px solid var(--color-acento);
+}
+
+.modal-producto .btn-close {
+    filter: invert(1);
+}
+
+.carrito-producto {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 14px 0;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.carrito-producto:last-child {
+    border-bottom: none;
+}
+
+.carrito-nombre {
+    color: var(--bg-dark);
+    font-weight: bold;
+}
+
+.carrito-precio {
+    color: var(--color-acento);
+    font-weight: bold;
+}
+
+.carrito-total {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 2px solid var(--bg-dark);
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.carrito-nav {
+    text-decoration: none !important;
+}
+
+.modal-abierto {
+    display: block;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
 #menuPrincipal.menu-abierto {
     display: block;
 }
 
-/* Botón con aspecto de enlace */
 .btn-enlace {
     border: none;
     background: transparent;
@@ -211,4 +254,25 @@ body {
 
 .btn-enlace:hover {
     text-decoration: underline;
+}
+
+.carrito-derecha {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-quitar-carrito {
+    border: 1px solid var(--color-acento);
+    border-radius: 6px;
+    padding: 4px 10px;
+    background-color: transparent;
+    color: var(--color-acento);
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.btn-quitar-carrito:hover {
+    background-color: var(--color-acento);
+    color: var(--text-white);
 }

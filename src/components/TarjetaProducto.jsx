@@ -15,6 +15,9 @@ export default function TarjetaProducto({
   vendedor,
   imagen,
   favorito,
+  sesionIniciada,
+  esAdmin,
+  onVer,
   onFavorito,
   onCambiarEstado,
   onEliminar
@@ -43,28 +46,40 @@ export default function TarjetaProducto({
           </div>
 
           <div className="producto-acciones">
-            <button type="button" className="btn-estado" onClick={onCambiarEstado}>
-              {vendido ? "Marcar como disponible" : "Marcar como vendido"}
-            </button>
+            <a href="#" className="btn-ver-producto" onClick={onVer}>
+              Ver producto
+            </a>
 
-            <button
-              type="button"
-              className={`btn-favorito ${favorito ? "activo" : ""}`}
-              onClick={onFavorito}
-              aria-label="Agregar a favoritos"
-            >
-              {favorito ? "♥" : "♡"}
-            </button>
-
-            <button
-              type="button"
-              className="btn-eliminar"
-              onClick={onEliminar}
-              aria-label="Eliminar publicación"
-            >
-              🗑
-            </button>
+            {sesionIniciada && (
+              <button
+                type="button"
+                className={`btn-favorito ${favorito ? "activo" : ""}`}
+                onClick={onFavorito}
+                aria-label="Agregar a favoritos"
+              >
+                {favorito ? "♥" : "♡"}
+              </button>
+            )}
           </div>
+
+          {sesionIniciada && (
+            <div className="producto-acciones">
+              <button type="button" className="btn-estado" onClick={onCambiarEstado}>
+                {vendido ? "Marcar como disponible" : "Marcar como vendido"}
+              </button>
+
+              {esAdmin && (
+                <button
+                  type="button"
+                  className="btn-eliminar"
+                  onClick={onEliminar}
+                  aria-label="Eliminar publicación"
+                >
+                  🗑
+                </button>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </article>

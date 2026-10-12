@@ -9,10 +9,11 @@ export default function TarjetaDestacado({
   descripcion,
   precio,
   vendedor,
-  imagen
+  imagen,
+  onVer
 }) {
   return (
-    <article className="tarjeta">
+    <a href="#" className="tarjeta" onClick={onVer}>
       <ImagenProducto imagen={imagen} nombre={nombre} clase="tarjeta-imagen" />
 
       <div className="tarjeta-cuerpo">
@@ -24,6 +25,6 @@ export default function TarjetaDestacado({
           <span className="tarjeta-usuario">{formatearUsuario(vendedor)}</span>
         </div>
       </div>
-    </article>
+    </a>
   );
 }

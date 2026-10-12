@@ -17,20 +17,19 @@ export default function Mercado({
   busqueda,
   onBuscar,
   categoriaInicial,
+  sesionIniciada,
+  esAdmin,
   favoritos,
   onFavorito,
   onCambiarEstado,
-  onEliminar
+  onEliminar,
+  onVerProducto
 }) {
   const [categoria, setCategoria] = useState(categoriaInicial);
   const [estado, setEstado] = useState("todos");
   const [precioMinimo, setPrecioMinimo] = useState("");
   const [precioMaximo, setPrecioMaximo] = useState("");
   const [orden, setOrden] = useState("relevancia");
-
-  /* =========================================
-     FILTROS Y ORDEN
-     ========================================= */
 
   function coincideTexto(producto) {
     const texto = busqueda.trim().toLowerCase();
@@ -73,10 +72,6 @@ export default function Mercado({
     setPrecioMaximo("");
     setOrden("relevancia");
   }
-
-  /* =========================================
-     ACCIONES SOBRE UN PRODUCTO
-     ========================================= */
 
   function eliminarProducto(id) {
     if (!confirm("¿Deseas eliminar esta publicación?")) {
@@ -147,6 +142,9 @@ export default function Mercado({
                     vendedor={producto.vendedor}
                     imagen={producto.imagen}
                     favorito={favoritos.includes(producto.id)}
+                    sesionIniciada={sesionIniciada}
+                    esAdmin={esAdmin}
+                    onVer={() => onVerProducto(producto.id)}
                     onFavorito={() => onFavorito(producto.id)}
                     onCambiarEstado={() => onCambiarEstado(producto)}
                     onEliminar={() => eliminarProducto(producto.id)}

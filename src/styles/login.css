@@ -1,0 +1,47 @@
+.login-contenido {
+    padding: 48px 24px;
+    min-height: 60vh;
+}
+
+.login-card {
+    border: 1px solid #dfe2e6;
+    border-top: 5px solid var(--color-acento);
+    border-radius: 12px;
+    background-color: #f4f5f7;
+}
+
+.login-card h3 {
+    color: var(--bg-dark);
+    font-weight: bold;
+}
+
+.login-card .form-label {
+    color: var(--bg-dark);
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.login-card .form-control:focus {
+    border-color: var(--color-acento);
+    box-shadow: 0 0 0 0.2rem rgba(156, 14, 32, 0.15);
+}
+
+.btn-ingresar {
+    border: none;
+    border-radius: 7px;
+    padding: 11px;
+    background-color: var(--color-acento);
+    color: var(--text-white);
+    font-weight: bold;
+}
+
+.btn-ingresar:hover {
+    background-color: #7f0b1a;
+}
+
+.login-ayuda {
+    margin: 16px 0 0 0;
+    color: #69717c;
+    font-size: 0.8rem;
+    text-align: center;
+}
